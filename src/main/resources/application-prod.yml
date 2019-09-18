@@ -1,0 +1,50 @@
+server:
+  port: 8888
+spring:
+  lbclockDataSource:
+    druid:
+      url: jdbc:mysql://localhost:3306/lbservice?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+      username: root
+      password: Azazie123
+      type: com.alibaba.druid.pool.DruidDataSource
+  mail:
+    host: smtp.exmail.qq.com
+    username: hr@lebbay.com
+    password: Lebbay2019
+    protocol: smtp
+    properties:
+      mail:
+        smtp: auth
+        port: 465
+        socketFactory:
+          port: 465
+          fallback: false
+          class: javax.net.ssl.SSLSocketFactory
+    default-encoding: utf-8
+    from: hr@lebbay.com
+    transport:
+      protocol: smtp
+logging:
+    level: info
+
+#简历解析账号密码
+jianlijiexi_username: dTEwMDA0OQ==
+jianlijiexi_pwd: dGVzdDAyMjY=
+
+#FTP配置
+fileUrl: 192.168.2.41:20
+ftpIp: 192.168.2.41
+ftpPort: 21
+ftpUserName: up
+ftpPassword: 123456
+
+configEnv: dev
+
+tokens: dTEwMDA0OQ==
+
+#HR系统
+zuul:
+  routes:
+    provider:
+      path: /api/v1/interview/**
+      url: http://hr.digi800.com/api/v1/interview/

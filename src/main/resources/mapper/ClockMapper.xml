@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lb.lbclock.dao.ClockMapper" >
+
+
+	<insert id="addClockRecord">
+		INSERT INTO hr_attendance_clock(
+			attendance_number,clock_in_time,create_time,serial_number,source,update_time,source_describe,clock_date_time,operator_id,clock_place
+		)VALUES (
+			#{attendanceNumber},#{clockInTime},#{createTime},#{serialNumber},#{source},#{updateTime},#{sourceDescribe},#{clockDateTime},#{operatorId},#{clockPlace}
+		)
+	</insert>
+	<update id="updateClockRecord">
+		UPDATE hr_attendance_clock
+		SET clock_in_time = #{clockInTime},update_time = #{updateTime},clock_date_time = #{clockDateTime}
+		WHERE attendance_number = #{attendanceNumber} and clock_date_time = #{clockDateTime}
+	</update>
+</mapper>

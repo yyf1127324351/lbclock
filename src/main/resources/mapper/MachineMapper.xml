@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lb.lbclock.dao.MachineMapper" >
+
+
+	<update id="updateAttendanceMachine">
+		UPDATE hr_attendance_machine
+		<set>
+			<if test="lastReceiveTime != null and lastReceiveTime!=''">
+				last_receive_time = #{lastReceiveTime},
+			</if>
+			<if test="status != null ">
+				status = #{status},
+			</if>
+			<if test="updateTime != null ">
+				update_time = #{updateTime}
+			</if>
+		</set>
+		WHERE serial_number = #{serialNumber}
+	</update>
+	<select id="getMachines" resultType="com.lb.lbclock.model.Machine">
+		SELECT
+			m.id AS id,
+			m.name AS name,
+			m.status AS status,
+			m.serial_number AS serialNumber
+		FROM hr_attendance_machine m
+		WHERE m.status != 2
+	</select>
+</mapper>
